@@ -26,6 +26,8 @@ public:
     sf::RenderWindow* getWindow() const;
     UI* getUI() const;
 
+    const std::vector<Ball*>& getBallsVector() const;
+    void destroyBall(Ball*);
 
 private:
     bool _pause;
@@ -42,10 +44,13 @@ private:
     sf::RenderWindow* _window;
     Paddle* _paddle;
     Ball* _ball;
+    Ball* _ball2; //test
     BrickManager* _brickManager;
     PowerupManager* _powerupManager;
     MessagingSystem* _messagingSystem;
     UI* _ui;
+
+    std::vector<Ball*> _ballsVector;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn

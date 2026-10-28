@@ -24,6 +24,11 @@ void GameManager::initialize()
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
 
+    _ball2 = new Ball(_window, 500.0f, this); //test
+    _ballsVector.push_back(_ball);
+    _ballsVector.push_back(_ball2);
+
+
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
 }
@@ -83,8 +88,11 @@ void GameManager::update(float dt)
 
     // update everything 
     _paddle->update(dt);
-    _ball->update(dt);
     _powerupManager->update(dt);
+    for (int i = 0; i < _ballsVector.size(); i++)
+    {
+        _ballsVector[i]->update(dt);
+    }
 }
 
 void GameManager::loseLife()
@@ -95,10 +103,22 @@ void GameManager::loseLife()
     // TODO screen shake.
 }
 
+void GameManager::destroyBall(Ball* ball)
+{
+    auto it = std::find(_ballsVector.begin(), _ballsVector.end(), ball);
+    if (it != _ballsVector.end()) {  // Makes sure it only checks size of vector and stops from deleting random objects
+        _ballsVector.erase(it); // Erases from vector
+        delete ball; // Destroys object
+    }
+}
+
 void GameManager::render()
 {
     _paddle->render();
-    _ball->render();
+    for (int i = 0; i < _ballsVector.size(); i++)
+    {
+        _ballsVector[i]->render();
+    }
     _brickManager->render();
     _powerupManager->render();
     _window->draw(_masterText);
@@ -115,3 +135,4 @@ UI* GameManager::getUI() const { return _ui; }
 Paddle* GameManager::getPaddle() const { return _paddle; }
 BrickManager* GameManager::getBrickManager() const { return _brickManager; }
 PowerupManager* GameManager::getPowerupManager() const { return _powerupManager; }
+const std::vector<Ball*>& GameManager::getBallsVector() const { return _ballsVector; }

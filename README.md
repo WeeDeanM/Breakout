@@ -30,8 +30,8 @@ You are to spend between three and eight hours improving this simple Breakout im
 * Sounds with increasing tone between bounces.
 * Implement commentary with calls to an LLM such as Ollama
 
-# Time Details and Changelist
-_TO DO_
+### Time Details and Changelist
+* Now supports multiple balls existing (Powerups only work on original) - 2hr 25mins
 
 <Add information to this section about the time you've taken for this task along with a professional changelist.>
 
