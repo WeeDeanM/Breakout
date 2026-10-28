@@ -28,6 +28,7 @@ public:
 
     const std::vector<Ball*>& getBallsVector() const;
     void destroyBall(Ball*);
+    void setUsedMulti();
 
 private:
     bool _pause;
@@ -36,6 +37,7 @@ private:
     float _timeLastPowerupSpawned;
     int _lives;
     bool _levelComplete;
+    bool _usedMulti;
     std::pair<POWERUPS, float> _powerupInEffect;
 
     sf::Font _font;

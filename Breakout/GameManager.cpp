@@ -39,6 +39,10 @@ void GameManager::update(float dt)
     _ui->updatePowerupText(_powerupInEffect);
     _powerupInEffect.second -= dt;
     
+    if (_powerupInEffect.first == multiBall )
+    {
+
+    }
 
     if (_lives <= 0)
     {
@@ -110,6 +114,11 @@ void GameManager::destroyBall(Ball* ball)
         _ballsVector.erase(it); // Erases from vector
         delete ball; // Destroys object
     }
+}
+
+void GameManager::setUsedMulti()
+{
+    _usedMulti = true;
 }
 
 void GameManager::render()
